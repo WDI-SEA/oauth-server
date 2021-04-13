@@ -26,7 +26,8 @@ router.get('/google/callback',
             photos: req.user.photos
         }
         // console.log('the payload', payload)
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 })
+        const oneHour = 3600
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: oneHour })
 
         // Important - redirect from the Server's URL (localhost:8000 or heroku or other server host)
         // to the client's URL (localhost:3000 or netlify, or other client host)
@@ -56,7 +57,8 @@ router.get('/github/callback',
             photos: req.user.photos
         }
         // console.log('the payload', payload)
-        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 })
+        const oneHour = 3600
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: oneHour })
 
         res.redirect(`${process.env.CLIENT_URL}/saveToken?token=${token}`);
     });
